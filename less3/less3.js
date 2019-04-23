@@ -75,12 +75,12 @@ function checkSavings() {
 checkSavings();
 
 function chooseOptExpenses(){
-    
     for (let i = 1; i < 4; i++){
         let a = prompt("Статья необязательных расходов?");
         appData.optionalExpenses[i] = a;
-        console.log(appData.optionalExpenses);
-    }    
+        
+    }  
+    console.log(appData.optionalExpenses);  
 }
 
 chooseOptExpenses();
