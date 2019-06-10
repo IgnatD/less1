@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     //timer
 
-    let deadline = '2019-05-29';
+    let deadline = '2019-06-15';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()), //дата окончания - тек дата
@@ -89,4 +89,33 @@ window.addEventListener('DOMContentLoaded', function(){
     }
 
     setClock('timer', deadline);
+
+    //modal window
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close'),
+        btnDescription = document.querySelectorAll('.description-btn');
+
+        more.addEventListener('click', function() {
+            openModalWindow.call(this);
+        });
+
+        function openModalWindow() {
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';    
+        } 
+
+        for (let i = 0; i < btnDescription.length; i++) {
+            btnDescription[i].addEventListener('click', function () {
+                openModalWindow.call(this);
+            });
+        }
+
+        close.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            more.classList.remove('more-splash');
+            document.body.style.overflow = '';
+        });    
 });
