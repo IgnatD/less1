@@ -5,8 +5,8 @@ window.addEventListener('DOMContentLoaded', function(){
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
 
-    function hideTabContent(a) {
-        for (let i = a; i < tabContent.length; i++) {
+    function hideTabContent(a=0) {
+            for (let i = a; i < tabContent.length; i++) {
             tabContent[i].classList.remove('show');
             tabContent[i].classList.add('hide');
         }
@@ -21,12 +21,12 @@ window.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    info.addEventListener('click', function(event) {
+    info.addEventListener('click', (event) => {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for(let i = 0; i < tab.length; i++) {
                 if (target == tab[i]) {
-                    hideTabContent(0);
+                    hideTabContent();
                     showTabContent(i);
                     break;
                 }
@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     let deadline = '2019-06-15';
 
-    function getTimeRemaining(endtime) {
+    function getTimeRemaining(endtime=0) {
         let t = Date.parse(endtime) - Date.parse(new Date()), //дата окончания - тек дата
         seconds = Math.floor((t/1000) % 60),
         minutes = Math.floor((t/1000/60) % 60),
@@ -57,9 +57,7 @@ window.addEventListener('DOMContentLoaded', function(){
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
             seconds = timer.querySelector('.seconds'),
-            timeInterval = setInterval(updateClock, 1000);
-
-        function updateClock() {
+            timeInterval = setInterval(() => {    
             let t = getTimeRemaining(endtime),
             h = t.hours,
             m = t.minutes,
@@ -79,13 +77,13 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
             if (t.total <= 0) {
-                clearInterval(timeInterval);
+                clearInterval(timeInterval=0);
                 hours.textContent = '00';
                 minutes.textContent = '00';
                 seconds.textContent = '00';
             }
 
-        }    
+        },1000);    
     }
 
     setClock('timer', deadline);
@@ -97,23 +95,23 @@ window.addEventListener('DOMContentLoaded', function(){
         close = document.querySelector('.popup-close'),
         btnDescription = document.querySelectorAll('.description-btn');
 
-        more.addEventListener('click', function() {
+        more.addEventListener('click', () => {
             openModalWindow.call(this);
         });
 
         function openModalWindow() {
             overlay.style.display = 'block';
-            this.classList.add('more-splash');
+            //this.classList.add('more-splash');
             document.body.style.overflow = 'hidden';    
         } 
 
         for (let i = 0; i < btnDescription.length; i++) {
-            btnDescription[i].addEventListener('click', function () {
+            btnDescription[i].addEventListener('click', () => {
                 openModalWindow.call(this);
             });
         }
 
-        close.addEventListener('click', function() {
+        close.addEventListener('click', () => {
             overlay.style.display = 'none';
             more.classList.remove('more-splash');
             document.body.style.overflow = '';
