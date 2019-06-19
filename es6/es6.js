@@ -11,7 +11,6 @@ class Options {
         let newDiv = document.createElement('div');
         document.body.appendChild(newDiv);
 
-        //let param = `height:${this.height}px; width:${this.width}px; background-color:${this.bg}; font-size:${this.fontSize}px; text-align:${this.textAlign}`;
         newDiv.style.cssText = `height:${this.height}px; width:${this.width}px; background-color:${this.bg}; font-size:${this.fontSize}px; text-align:${this.textAlign}`;
     }
 }
